@@ -72,14 +72,61 @@ The system is designed to simulate how financial institutions assess lending ris
 
 ## 📊 Model Performance
 
-| Metric    | Score           |
-| --------- | --------------- |
-| ROC-AUC   | **(Add Score)** |
-| Precision | **(Add Score)** |
-| Recall    | **(Add Score)** |
-| F1 Score  | **(Add Score)** |
+The model was evaluated using standard classification metrics on unseen test data.
+
+| Metric                    | Score    |
+| ------------------------- | -------- |
+| Accuracy                  | **67%**  |
+| ROC-AUC                   | **0.75** |
+| Precision (Default Class) | **0.22** |
+| Recall (Default Class)    | **0.70** |
+| F1 Score (Default Class)  | **0.33** |
 
 ---
+
+### 📈 Performance Interpretation
+
+* The model successfully detects **70% of actual defaulters**, making it effective for risk detection.
+* Lower precision indicates the model intentionally prioritizes **recall over precision**, which is suitable for financial risk systems where missing a defaulter is more costly than false alerts.
+* ROC-AUC score of **0.75** indicates good class separation capability.
+
+---
+
+### 🎯 Why This Model Is Useful
+
+In loan risk prediction:
+
+> It is safer to incorrectly flag a safe applicant
+> than to miss a risky borrower.
+
+This model is optimized accordingly.
+
+---
+
+### 📊 Class Distribution Insight
+
+| Class | Meaning     | Count  |
+| ----- | ----------- | ------ |
+| 0     | Non-Default | 45,139 |
+| 1     | Default     | 5,931  |
+
+The dataset is **imbalanced**, and this was handled using:
+
+* class weighting
+* ROC-based threshold tuning
+
+---
+
+### 🧠 Key Observation
+
+This model is tuned for **risk-sensitive prediction**, not raw accuracy.
+
+Financial institutions prefer:
+
+> High recall for defaulters > High accuracy
+
+which this model achieves successfully.
+
 
 ## 🌐 Web Application Features
 
@@ -207,3 +254,4 @@ This project is created for educational and portfolio demonstration purposes.
 ---
 
 ⭐ If you found this project useful, consider starring the repository.
+

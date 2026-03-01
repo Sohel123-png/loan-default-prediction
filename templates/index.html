@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loan Risk Intelligence</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background: linear-gradient(135deg,#0f172a,#1e3a8a,#2563eb);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+}
+
+.card{
+    width:100%;
+    max-width:900px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.4);
+    color:white;
+}
+
+h1{
+    text-align:center;
+    font-weight:700;
+    margin-bottom:30px;
+    font-size:28px;
+    letter-spacing:1px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+}
+
+.input-group{
+    display:flex;
+    flex-direction:column;
+}
+
+label{
+    font-size:13px;
+    margin-bottom:6px;
+    opacity:0.9;
+}
+
+input,select{
+    padding:12px;
+    border-radius:10px;
+    border:none;
+    outline:none;
+    font-size:14px;
+    background:rgba(255,255,255,0.15);
+    color:white;
+    transition:0.3s;
+}
+
+input:focus,select:focus{
+    background:rgba(255,255,255,0.25);
+    transform:scale(1.02);
+}
+
+select option{
+    color:black;
+}
+
+button{
+    grid-column:1/-1;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    background:linear-gradient(135deg,#22c55e,#16a34a);
+    color:white;
+    transition:0.3s;
+    margin-top:10px;
+}
+
+button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+.result{
+    margin-top:30px;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    animation:fadeIn 0.6s ease-in-out;
+}
+
+.high{
+    background:linear-gradient(135deg,#ef4444,#b91c1c);
+}
+
+.low{
+    background:linear-gradient(135deg,#10b981,#047857);
+}
+
+.result h2{
+    margin-bottom:10px;
+}
+
+.prob{
+    font-size:22px;
+    font-weight:700;
+    margin-top:10px;
+}
+
+@keyframes fadeIn{
+    from{opacity:0;transform:translateY(10px);}
+    to{opacity:1;transform:translateY(0);}
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+
+<h1>Loan Risk Intelligence System</h1>
+
+<form method="POST">
+<div class="form-grid">
+
+<div class="input-group">
+<label>Age</label>
+<input type="number" name="Age" required>
+</div>
+
+<div class="input-group">
+<label>Income</label>
+<input type="number" name="Income" required>
+</div>
+
+<div class="input-group">
+<label>Loan Amount</label>
+<input type="number" name="LoanAmount" required>
+</div>
+
+<div class="input-group">
+<label>Credit Score</label>
+<input type="number" name="CreditScore" required>
+</div>
+
+<div class="input-group">
+<label>Months Employed</label>
+<input type="number" name="MonthsEmployed" required>
+</div>
+
+<div class="input-group">
+<label>Credit Lines</label>
+<input type="number" name="NumCreditLines" required>
+</div>
+
+<div class="input-group">
+<label>Interest Rate</label>
+<input type="number" step="0.01" name="InterestRate" required>
+</div>
+
+<div class="input-group">
+<label>Loan Term</label>
+<input type="number" name="LoanTerm" required>
+</div>
+
+<div class="input-group">
+<label>DTI Ratio</label>
+<input type="number" step="0.01" name="DTIRatio" required>
+</div>
+
+<div class="input-group">
+<label>Education</label>
+<select name="Education">
+<option value="high school">High School</option>
+<option value="bachelor's">Bachelor's</option>
+<option value="master's">Master's</option>
+<option value="phd">PhD</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Employment</label>
+<select name="EmploymentType">
+<option value="full-time">Full-time</option>
+<option value="part-time">Part-time</option>
+<option value="self-employed">Self-employed</option>
+<option value="unemployed">Unemployed</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Marital Status</label>
+<select name="MaritalStatus">
+<option value="single">Single</option>
+<option value="married">Married</option>
+<option value="divorced">Divorced</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Mortgage</label>
+<select name="HasMortgage">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Dependents</label>
+<select name="HasDependents">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Loan Purpose</label>
+<select name="LoanPurpose">
+<option value="business">Business</option>
+<option value="home">Home</option>
+<option value="education">Education</option>
+<option value="car">Car</option>
+<option value="other">Other</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Co-Signer</label>
+<select name="HasCoSigner">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+</div>
+
+<button type="submit">Analyze Risk</button>
+
+</div>
+</form>
+
+{% if prediction is not none %}
+<div class="result {{ 'high' if prediction==1 else 'low' }}">
+<h2>
+{{ "High Default Risk ⚠️" if prediction==1 else "Low Default Risk ✅" }}
+</h2>
+<div class="prob">
+Probability: {{ probability }}
+</div>
+</div>
+{% endif %}
+
+</div>
+</body>
+</html>
